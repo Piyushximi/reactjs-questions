@@ -6,15 +6,15 @@
 ### Table of Contents
 
 
-| No. | Questions |
-| ----- | ------------------- |
-|     | **Core React**     |
-| 1   | [What is React?](#what-is-react) |
-| 2   | [What are the major features of React?](#what-are-the-major-features-of-react) |
-| 3   | [What is JSX?](#what-is-jsx)  |
-| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) |
-| 5   | [What is Higher order components(HOC)](#5) |
-| 6   | [Differentiate between stateful and stateless components.](#6) |
+| No. | Questions | No | Questions |
+| ----- | ------------------- | ---- | ------------------- |
+|     | **Core React**     | 
+| 1   | [What is React?](#what-is-react) | 16  | [What is Controlled component and uncontrolled Component](#16) |
+| 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) |
+| 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) |
+| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)|
+| 5   | [What is Higher order components(HOC)](#5) | 20 | [What are the differences between a class component and functional component?](#20)|
+| 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
 | 7   | [What is the difference between state and props?](#7) |
 | 8   | [What is setState()](#8) |
 | 9   | [What is React Lifecycle](#9) |
@@ -24,7 +24,7 @@
 | 13  | [What is Profiler](#13) |
 | 14  | [What is the Optimization ways in react](#14) |
 | 15  | [What is Ref](#15) |
-| 16  | [What is React Lifecycle](#16) |
+
 
 
 
@@ -211,7 +211,7 @@ The React LifeCycle is mainly classified into three stages  `Mounting`, `Updat
     * **componentDidUpdate ()**- Called immediately after rendering takes place.
 - **Unmounting:** -
     * **componentWillUnmount**  - Called after the component is unmounted from the DOM. It is used to clear up the memory spaces.
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 10
 ### What is React Fragments, and when should you use them?
 React Fragments allow us to group multiple components without introducing an additional parent element in the DOM. Fragment are useful when you need to return multiple elements from a component's render method.
@@ -232,7 +232,7 @@ const MyComponent = () => {
  );
 };
 ```
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 11
 ### What is Keys in React? lists and why they are essential.
 A `key` is a special attribute you **should** include when mapping over arrays to render data. _Key_ prop helps React identify which items have changed, are added, or are removed.
@@ -283,7 +283,7 @@ class ErrorBoundary extends React.Component {
       }
 }
 ```
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 13
 ### What is Profiler
 It measures how many times the react application renders. It helps to identify the part of the application which are slow so that the developer can optimize it for better performance. It is lightweight and no third-party dependency is required. The profiler takes two props one is an id which is a String and another one is onRender which is a callback function.
@@ -302,7 +302,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 * id: A string identifying the part of the UI you are measuring.
 * onRender: An onRender callback that React calls every time components within the profiled tree update. It receives information about what was rendered and how much time it took.
 
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 14
 ### What is the Optimization ways in react
 Minimizing the number of re-renders is an important optimization technique in React that involves reducing the amount of unnecessary updates to the DOM caused by changes in state or props. Re-rendering a component can be an expensive operation, especially if it involves updating many child components.
@@ -311,7 +311,7 @@ Minimizing the number of re-renders is an important optimization technique in Re
 * Use React.Fragments to Avoid Additional HTML Element Wrappers
 * Avoid Inline Function Definition in the Render Function.: - Since functions are objects in `JavaScript ({} !== {})`, so arrow function will create a new instance of the function on each render if it's used in a JSX property. This might create a lot of work for the garbage collector.
 
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 15
 ### What is Ref
 Refs is the short hand for References in React Refs are a function provided by React to access the DOM element and the React element that you might have created on your own. They are used in cases where we want to change the value of a child component, without making use of props and all. They have wide functionality as we can use callbacks with them.
@@ -333,3 +333,169 @@ const textInput = useRef(null);
 //in return
 <input ref={textInput} type="text" />
 ```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+### 16
+### What is Controlled component and uncontrolled Component
+1. **Controlled Components:** In React, Controlled Components are those in which form’s data is handled by the component’s state. It takes its current value through props and makes changes through callbacks like onClick,onChange, etc. A parent component manages its own state and passes the new values as props to the controlled component. You could also call this a "dumb component".
+
+For example, to write all the names in uppercase letters, we use handleChange as below,
+
+```javascript
+handleChange(event) {
+    this.setState({value: event.target.value.toUpperCase()})
+}
+```
+**You can use the controlled component when you create**
+* Form validation so you always need to know the value of the input when typing to check if it’s a valid character or not!
+* Disable the submit button unless all fields have valid data
+* If you have a specific format like the credit card input
+
+2. **Uncontrolled Components** are the components that are not controlled by the React state and are handled by the DOM (Document Object Model). So in order to access any value that has been entered we take the help of refs. Ref to find its current value when you need it. This is a bit more like traditional HTML.
+
+In the below UserProfile component, the `name` input is accessed using ref.
+
+```jsx harmony
+    class UserProfile extends React.Component {
+      constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.input = React.createRef();
+      }
+
+      handleSubmit(event) {
+        alert("A name was submitted: " + this.input.current.value);
+        event.preventDefault();
+      }
+
+      render() {
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              {"Name:"}
+              <input type="text" ref={this.input} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        );
+      }
+    }
+```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+### 17
+### What is reconciliation in ReactJS?
+The reconciliation process makes React work faster. Reconciliation is the process through which React updates the Browser DOM.
+
+* Reconciliation is the process by which React updates the UI to reflect changes in the component state. The reconciliation algorithm is the set of rules that React uses to determine how to update the UI in the most efficient way possible.
+* React uses a virtual DOM (Document Object Model) to update the UI. The virtual DOM is a lightweight in-memory representation of the real DOM, which allows React to make changes to the UI without manipulating the actual DOM. This makes updates faster, as changing the virtual DOM is less expensive than changing the real DOM.
+* `The reconciliation algorithm works by comparing the current virtual DOM tree to the updated virtual DOM tree, and making the minimum number of changes necessary to bring the virtual DOM in line with the updated state`.
+
+**Important concepts behind the working of the Reconciliation process are:**
+1. Virtual DOM
+	* React renders JSX components to the Browser DOM, but keeps a copy of the actual DOM to itself. This copy is the Virtual DOM. We can think of it as the twin brother of the real or Browser DOM. The following actions take place in React:
+	* React stores a copy of Browser DOM which is called Virtual DOM.
+	* When we make changes or add data, React creates a new Virtual DOM and compares it with the previous one.
+	* Comparison is done by Diffing Algorithm. The cool fact is all these comparisons take place in the memory and nothing is yet changed in the Browser.
+2. Diffing Algorithm
+	* How does this Virtual DOM compare itself to its previous version? This is where the Diffing Algorithm comes into play
+
+### 18
+### What are Pure Components?
+Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values.
+If the value of the previous state or props and the new state or props is the same, the component is not re-rendered. Since Pure Components restricts the re-rendering when there is no use of re-rendering of the component. Pure Components are Class Components which extends React.PureComponent. 
+
+Pure components are the components which render the same output for the same state and props. In function components, you can achieve these pure components through memoized `React.memo()` API wrapping around the component. This API prevents unnecessary re-renders by comparing the previous props and new props using shallow comparison. So it will be helpful for performance optimizations. 
+    
+But at the same time, it won't compare the previous state with the current state because function component itself prevents the unnecessary rendering by default when you set the same state again.
+
+The syntactic representation of memoized components looks like below,
+
+```jsx
+const MemoizedComponent = memo(SomeComponent, arePropsEqual?);
+```
+
+Below is the example of how child component(i.e., EmployeeProfile) prevents re-renders for the same props passed by parent component(i.e.,EmployeeRegForm).
+
+```jsx
+import { memo, useState } from 'react';
+
+const EmployeeProfile = memo(function EmployeeProfile({ name, email }) {
+  return (<>
+        <p>Name:{name}</p>
+        <p>Email: {email}</p>
+        </>);
+});
+export default function EmployeeRegForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  return (
+    <>
+      <label>
+        Name: <input value={name} onChange={e => setName(e.target.value)} />
+      </label>
+      <label>
+        Email: <input value={email} onChange={e => setEmail(e.target.value)} />
+      </label>
+      <hr/>
+      <EmployeeProfile name={name}/>
+    </>
+  );
+}
+```
+In the above code, the email prop has not been passed to child component. So there won't be any re-renders for email prop change.
+
+In class components, the components extending _`React.PureComponent`_ instead of  _`React.Component`_ become the pure components. When props or state changes, _PureComponent_ will do a shallow comparison on both props and state by invoking `shouldComponentUpdate()` lifecycle method. 
+
+**Note:** `React.memo()` is a higher-order component.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+### 19
+### What is Diffing and Prop drilling
+* DOM Diffing:  Whenever there is a change in the state of the UI elements, a new virtual DOM is created. Then the new virtual DOM and the previous virtual DOM are compared with each other. This comparing is called DOM diffing.  The intention is to perform minimal operations on the real DOM, hence after diffing, the best way to update the real DOM is calculated, leading to an efficient update of the UI.
+* Prop Drilling: Prop Drilling is the process by which you pass data from one component of the React Component tree to another by going through other components that do not need the data but only help in passing it around.
+    * It is not a good idea to pass data via several components when building neat, reusable, and DRY code.
+    * Prop drilling in react is sometimes advantageous for smaller apps since there are lesser components and conditions to control.
+ 
+### 20
+### What are the differences between a class component and functional component?
+**Class components** A class component requires you to extend from React. Component and create a render function which returns a React element.
+   
+* It must have the render() method returning HTML 
+* Also known as Stateful components because they implement logic and state.
+* React lifecycle methods can be used inside class components (for example, componentDidMount). 
+```javascript
+    	class Car extends React.Component {
+		  render() {
+		    return <h2>Hi, I am a Car!</h2>;
+		  }
+		}
+```
+
+**Functional Components**
+
+* A functional component is just a plain JavaScript function that accepts props as an argument and returns a React element. 
+* There is no render method used in functional components. 
+* Also known as Stateless components as they simply accept data and display them in some form, that they are mainly responsible for rendering UI.
+* React lifecycle methods (for example, componentDidMount) cannot be used in functional components. 
+```javascript
+    function Car() {
+	return <h2>Hi, I am a Car!</h2>;
+    }
+```
+
+
+### 21
+### Component Composition
+Component composition is one of the most fundamental concepts in React that gives power to developers to build complex user interfaces by breaking them into smaller, reusable building blocks.
+
+**Techniques for Component Composition:**
+* **Parent-child component:** The simplest form of composition, where a parent component renders a child component and passes data as props.
+* **Higher-Order Components (HOCs):** HOCs are functions that take components and return an enhanced version of them, enabling code reuse and logic sharing.
+* **Render Props:** Components expose a prop that’s a function, allowing the consumer to render content based on the component’s internal state.
+* **Context API:** It provides a way to share state globally. There is no need to pass down the props through all levels to share state.
+* **Hooks:** With hooks like useState and useEffect, components can encapsulate state and side effects while remaining reusable.
