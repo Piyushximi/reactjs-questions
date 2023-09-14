@@ -9,7 +9,8 @@
 | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |     | **Core React**                                                                                                                                                                                                                   |
 | 1   | [What is React?](#what-is-react)                                                                                                                                                                                                 |
-| 2   | [What are the major features of React?](#what-are-the-major-features-of-react)                                                                                                                                                   |
+| 2   | [What are the major features of React?](#what-are-the-major-features-of-react)|
+| 3   | [What is JSX?](#what-is-jsx)                                                                                                                                                                                                     |
 
 
 
@@ -36,3 +37,5 @@
     - Uses **reusable/composable** UI components to develop the view.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+3.  ### What is JSX?
