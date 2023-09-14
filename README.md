@@ -15,15 +15,15 @@
 | 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)|
 | 5   | [What is Higher order components(HOC)](#5) | 20 | [What are the differences between a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
-| 7   | [What is the difference between state and props?](#7) |
+| 7   | [What is the difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
 | 8   | [What is setState()](#8) |
 | 9   | [What is React Lifecycle](#9) |
 | 10   | [What is React Fragments, and when should you use them?](#10) |
 | 11   | [What is Keys in React? lists and why they are essential.](#11) |
 | 12  | [What are error boundaries in React](#12) |
 | 13  | [What is Profiler](#13) |
-| 14  | [What is the Optimization ways in react](#14) |
-| 15  | [What is Ref](#15) |
+| 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
+| 15  | [What is Ref](#15) | 30 | [What is Webpack.](#30) |
 
 
 
@@ -504,3 +504,29 @@ Component composition is one of the most fundamental concepts in React that give
 * **Render Props:** Components expose a prop that’s a function, allowing the consumer to render content based on the component’s internal state.
 * **Context API:** It provides a way to share state globally. There is no need to pass down the props through all levels to share state.
 * **Hooks:** With hooks like useState and useEffect, components can encapsulate state and side effects while remaining reusable.
+
+### 22
+### What is forwardRef?
+When a child component needs to reference its parent component’s current node, the parent component needs a way to send down its ref to the child. The technique is called ref forwarding. Ref forwarding is a technique for automatically passing a ref through a component to one of its children. It’s very useful when building reusable component libraries. forwardRef is a function used to pass the ref to a child component.
+
+```javascript
+const inputRef = useRef(null);
+
+const ref = () => {
+        inputRef.current.value = 1000;
+    };
+<input ref={inputRef}/> 
+<Button onClick={ref}/>
+// Other component with Button component 
+const Button = (props,refs) => { return(<button ref={refs} >{props.children}</button>) } export default forwardRef(Button);
+```
+
+### 29
+### What is Babel. or Transpiler?
+Babel is a javascript compiler that converts modern Javascript(ECMAScript) code into version compatible with all the browsers. Browsers can't understand JSX code. So with the help of transpiler to convert your JSX to regular Javascript that browsers can understand. The most widely used transpiler right now is Babel
+
+### 30
+### What is Webpack.
+WebPack is a javascript module bundler that is commonly used in react to bundle and manage dependancies. it takes all the individual javascript files and other assets in project like Css, images and combine them into a single bundle that can be loaded by the browser. `Minify JS and CSS`
+
+**Make build: Make build in single file as requirement (Dev, UAT, Qa, Production )**
