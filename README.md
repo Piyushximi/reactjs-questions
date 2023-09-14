@@ -211,6 +211,7 @@ The React LifeCycle is mainly classified into three stages  `Mounting`, `Updat
     * **componentDidUpdate ()**- Called immediately after rendering takes place.
 - **Unmounting:** -
     * **componentWillUnmount**  - Called after the component is unmounted from the DOM. It is used to clear up the memory spaces.
+
 **[⬆ Back to Top](#table-of-contents)**
 ### 10
 ### What is React Fragments, and when should you use them?
@@ -232,6 +233,7 @@ const MyComponent = () => {
  );
 };
 ```
+
 **[⬆ Back to Top](#table-of-contents)**
 ### 11
 ### What is Keys in React? lists and why they are essential.
@@ -283,6 +285,7 @@ class ErrorBoundary extends React.Component {
       }
 }
 ```
+
 **[⬆ Back to Top](#table-of-contents)**
 ### 13
 ### What is Profiler
@@ -402,6 +405,7 @@ The reconciliation process makes React work faster. Reconciliation is the pr
 2. Diffing Algorithm
 	* How does this Virtual DOM compare itself to its previous version? This is where the Diffing Algorithm comes into play
 
+**[⬆ Back to Top](#table-of-contents)**
 ### 18
 ### What are Pure Components?
 Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values.
@@ -461,6 +465,7 @@ In class components, the components extending _`React.PureComponent`_ instead of
     * It is not a good idea to pass data via several components when building neat, reusable, and DRY code.
     * Prop drilling in react is sometimes advantageous for smaller apps since there are lesser components and conditions to control.
  
+**[⬆ Back to Top](#table-of-contents)**
 ### 20
 ### What are the differences between a class component and functional component?
 **Class components** A class component requires you to extend from React. Component and create a render function which returns a React element.
@@ -488,7 +493,7 @@ In class components, the components extending _`React.PureComponent`_ instead of
     }
 ```
 
-
+**[⬆ Back to Top](#table-of-contents)**
 ### 21
 ### Component Composition
 Component composition is one of the most fundamental concepts in React that gives power to developers to build complex user interfaces by breaking them into smaller, reusable building blocks.
