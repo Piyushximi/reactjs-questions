@@ -21,7 +21,7 @@
 | 10   | [What is React Fragments, and when should you use them?](#10) |
 | 11   | [What is Keys in React? lists and why they are essential.](#11) |
 | 12  | [What are error boundaries in React](#12) |
-| 13  | [What is Profiler](#13) |
+| 13  | [What is Profiler](#13) | 28 | [What are the differences between useEffect and useLayoutEffect hooks?](#28) |
 | 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
 | 15  | [What is Ref](#15) | 30 | [What is Webpack.](#30) |
 
@@ -520,6 +520,15 @@ const ref = () => {
 // Other component with Button component 
 const Button = (props,refs) => { return(<button ref={refs} >{props.children}</button>) } export default forwardRef(Button);
 ```
+### 28
+### What are the differences between useEffect and useLayoutEffect hooks?
+useEffect and useLayoutEffect are both React hooks that can be used to synchronize a component with an external system, such as a browser API or a third-party library. However, there are some key differences between the two:
+- **Timing:** useEffect runs after the browser has finished painting, while useLayoutEffect runs synchronously before the browser paints. This means that useLayoutEffect can be used to measure and update layout in a way that feels more synchronous to the user.
+- **Browser Paint:** useEffect allows browser to paint the changes before running the effect, hence it may cause some visual flicker. useLayoutEffect synchronously runs the effect before browser paints and hence it will avoid visual flicker.
+- **Execution Order:** The order in which multiple useEffect hooks are executed is determined by React and may not be predictable. However, the order in which multiple useLayoutEffect hooks are executed is determined by the order in which they were called.
+- **Error handling:** useEffect has a built-in mechanism for handling errors that occur during the execution of the effect, so that it does not crash the entire application. useLayoutEffect does not have this mechanism, and errors that occur during the execution of the effect will crash the entire application.
+
+In general, it's recommended to use useEffect as much as possible, because it is more performant and less prone to errors. useLayoutEffect should only be used when you need to measure or update layout, and you can't achieve the same result using useEffect.
 
 ### 29
 ### What is Babel. or Transpiler?
