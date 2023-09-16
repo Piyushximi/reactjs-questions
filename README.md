@@ -507,7 +507,7 @@ Component composition is one of the most fundamental concepts in React that give
 
 ### 22
 ### What is forwardRef?
-When a child component needs to reference its parent component’s current node, the parent component needs a way to send down its ref to the child. The technique is called ref forwarding. Ref forwarding is a technique for automatically passing a ref through a component to one of its children. It’s very useful when building reusable component libraries. forwardRef is a function used to pass the ref to a child component.
+When a child component needs to reference its parent component’s current node, the parent component needs a way to send down its `ref` to the child. The technique is called ref forwarding. It’s very useful when building reusable component libraries. forwardRef is a function used to pass the ref to a child component.
 
 ```javascript
 const inputRef = useRef(null);
@@ -540,11 +540,11 @@ Hooks is a special JavaScript function that allows you use state and other React
 |[useEffect()](#useEffect)          |To manage side-effects like API calls, subscriptions, timers, mutations, and more.|
 |[useContext()](#useContext)         |To return the current value for a context.|
 |[useReducer()](#useReducer)         |A useState alternative to help with complex state management.|
-|useCallback()        |It returns a memorized version of a callback to help a child component not re-render unnecessarily.|
-|useMemo()            |It returns a memoized value that helps in performance optimizations.|
-|useRef()             |It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.|
+|[useCallback()](#useCallback)        |It returns a memorized version of a callback to help a child component not re-render unnecessarily.|
+|[useMemo()](#useMemo)            |It returns a memoized value that helps in performance optimizations.|
+|[useRef()](#useRef)             |It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.|
 |useImperativeHandle()|It customizes the instance value that is exposed to parent components when using ref.|
-|useLayoutEffect()    |It fires at the end of all DOM mutations. It\'s best to use useEffect as much as possible over this one as the useLayoutEffect fires synchronously.|
+|[useLayoutEffect()](#useLayoutEffect)    |It fires at the end of all DOM mutations. It\'s best to use useEffect as much as possible over this one as the useLayoutEffect fires synchronously.|
 |useDebugValue()      |Helps to display a label in React DevTools for custom hooks.
 
 ## Q. How to create custom Hooks?
@@ -601,7 +601,7 @@ export default function App() {
   );
 }
 ```
-
+**[⬆ Back to Question](#23)**
 
 ### useState
 useState used to manage state in functional component. it accepts an initial state and returns two values
@@ -624,6 +624,7 @@ return (
 );
 }
 ```
+
 ### useEffect
 useEffect(callback, dependencies): is used to handle side effects in function components. like fetching data or updating the DOM, and timers. you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined. useEffect accepts two arguments. The second argument is optional.
 ```javascript
@@ -641,7 +642,7 @@ useEffect(() => {
   //Runs only on the first render
 }, []);
 ```
-
+**[⬆ Back to Question](#23)**
 ### useContext
 useContext is a way to manage data between components without passing it through props.It's useful for managing global state. You create a context using `createContext()` and provide it at a higher level. Consumers can access the context using `useContext()`
 ```javascript
@@ -660,6 +661,7 @@ function Component() {
  // Use theme value here
 } 
 ```
+**[⬆ Back to Question](#23)**
 ### useReducer
 useReducer() is a hook to use sometimes to manage the state of the application. It is very similar to the useState hook, just more complex. It acts as an alternate hook to the useState hook to manage complex state in your application
 
@@ -694,6 +696,188 @@ export default ReducerExample
 ```
 
 Here, we first define an initialState and a reducer. When a user clicks a button, it will dispatch an action which updates the count and the updated count will be displayed. We could define as many actions as possible in the reducer, but the limitation of this pattern is that actions are finite.
+
+**[⬆ Back to Question](#23)**
+
+### useCallback
+React\'s `useCallback()` Hook can be used to optimize the rendering behavior of your React function components. The `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed.
+**const cachedFn = useCallback(fn, dependencies)**
+
+This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).
+
+**Example:**
+
+```js
+/**
+ * useCallback()
+ */
+import React, { useState, useCallback, useEffect } from "react";
+
+const count = new Set();
+
+export default function App() {
+  const [counter, setCounter] = useState(0);
+
+  const increment = useCallback(() => {
+    setCounter(counter + 1);
+  }, [counter]);
+
+  useEffect(() => {
+    count.add(increment);
+    console.log(count.size);
+  }, [increment]);
+
+  return (
+    <>
+      <h1>useCallback()</h1>
+      <h2>Function Call: {count.size}</h2>
+      <button onClick={increment}>Increment</button>
+    </>
+  );
+}
+```
+**[⬆ Back to Question](#23)**
+### useMemo
+useMemo():**
+
+The `useMemo()` is similar to `useCallback()` except it allows you to apply memoization to any value type. It does this by accepting a function which returns the value and then that function is only called when the value needs to be retrieved.
+
+**Example:**
+
+React application which renders a list of users and allows us to filter the users by their name. The filter happens only when a user explicitly clicks a button; not already when the user types into the input field.
+
+```js
+import React from 'react'
+
+const users = [
+  { id: 'a', name: 'Robin' },
+  { id: 'b', name: 'Dennis' },
+]
+
+const App = () => {
+  const [text, setText] = React.useState('')
+  const [search, setSearch] = React.useState('')
+
+  const handleText = (event) => {
+    setText(event.target.value)
+  }
+
+  const handleSearch = () => {
+    setSearch(text)
+  }
+
+  // useMemo Hooks
+  const filteredUsers = React.useMemo(
+    () =>
+      users.filter((user) => {
+        console.log('Filter function is running ...');
+        return user.name.toLowerCase().includes(search.toLowerCase());
+      }),
+    [search]
+  );
+
+  return (
+    <div>
+      <input type="text" value={text} onChange={handleText} />
+      <button type="button" onClick={handleSearch}>
+        Search
+      </button>
+
+      <List list={filteredUsers} />
+    </div>
+  )
+}
+
+const List = ({ list }) => {
+  return (
+    <ul>
+      {list.map((item) => (
+        <ListItem key={item.id} item={item} />
+      ))}
+    </ul>
+  )
+}
+
+const ListItem = ({ item }) => {
+  return <li>{item.name}</li>
+}
+
+export default App
+```
+
+Here, the **filteredUsers** function is only executed once the search state changes. It doesn\'t run if the text state changes, because that\'s not a dependency for this filter function and thus not a dependency in the dependency array for the useMemo hook.
+
+**[⬆ Back to Question](#23)**
+
+### useRef
+
+The useRef is a hook that uses the same ref throughout. It saves its value between re-renders in a functional component and doesn\'t create a new instance of the ref for every re-render. It persists the existing ref between re-renders.
+
+**Example:**
+
+```js
+/**
+ * useRef()
+ */
+export default function App() {
+  const [count, setCount] = useState(0);
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = "SomeInitialValue";
+  }, []);
+
+  useEffect(() => {
+    console.log(count, ref.current);
+  }, [count]);
+
+  return (
+    <div className="App">
+      <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+      <p>{count}</p>
+    </div>
+  );
+}
+```
+**[⬆ Back to Question](#23)**
+### useLayoutEffect
+
+This runs synchronously immediately after React has performed all DOM mutations. This can be useful if you need to make DOM measurements (like getting the scroll position or other styles for an element) and then make DOM mutations or trigger a synchronous re-render by updating state.
+
+As far as scheduling, this works the same way as `componentDidMount` and `componentDidUpdate`. Your code runs immediately after the DOM has been updated, but before the browser has had a chance to "paint" those changes (the user doesn\'t actually see the updates until after the browser has repainted).
+
+**Example:**
+
+```js
+import React, { useState, useLayoutEffect } from 'react'
+import ReactDOM from 'react-dom'
+
+const BlinkyRender = () => {
+  const [value, setValue] = useState(0)
+
+  useLayoutEffect(() => {
+    if (value === 0) {
+      setValue(10 + Math.random() * 200)
+    }
+  }, [value])
+
+  console.log('render', value)
+
+  return (
+    <div onClick={() => setValue(0)}>
+      value: {value}
+    </div>
+  )
+}
+
+ReactDOM.render( <BlinkyRender />, document.querySelector('#root'))
+```
+
+**useLayoutEffect vs useEffect:**
+
+* **useLayoutEffect**: If you need to mutate the DOM and/or do need to perform measurements
+* **useEffect**: If you don\'t need to interact with the DOM at all or your DOM changes are unobservable (seriously, most of the time you should use this).
+
 
 **[⬆ Back to Top](#table-of-contents)**
 
