@@ -16,7 +16,7 @@
 | 5   | [What is Higher order components(HOC)](#5) | 20 | [What are the differences between a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
 | 7   | [What is the difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
-| 8   | [What is setState()](#8) |
+| 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
 | 9   | [What is React Lifecycle](#9) |
 | 10   | [What is React Fragments, and when should you use them?](#10) |
 | 11   | [What is Keys in React? lists and why they are essential.](#11) |
@@ -523,6 +523,145 @@ return(<button ref={refs} >{props.children}</button>)
 }
 export default forwardRef(Button);
 ```
+### 23 
+### What is Hooks?
+Hooks is a special JavaScript function that allows you use state and other React lifecycle features without writing a class. This pattern has been introduced as a new feature in React 16.8 and helped to isolate the stateful logic from the components.
+
+**Rules of Hooks:**
+* Hooks should not be called inside loops, conditions, or nested functions.
+* Hooks should be used inside React function components
+
+**Built-in Hooks:**
+
+| Hooks               | Description                                                                     |
+|---------------------|---------------------------------------------------------------------------------|
+|[useState()](#useState)           |To manage states. Returns a stateful value and an updater function to update it. |
+|useEffect()          |To manage side-effects like API calls, subscriptions, timers, mutations, and more.|
+|useContext()         |To return the current value for a context.|
+|useReducer()         |A useState alternative to help with complex state management.|
+|useCallback()        |It returns a memorized version of a callback to help a child component not re-render unnecessarily.|
+|useMemo()            |It returns a memoized value that helps in performance optimizations.|
+|useRef()             |It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.|
+|useImperativeHandle()|It customizes the instance value that is exposed to parent components when using ref.|
+|useLayoutEffect()    |It fires at the end of all DOM mutations. It\'s best to use useEffect as much as possible over this one as the useLayoutEffect fires synchronously.|
+|useDebugValue()      |Helps to display a label in React DevTools for custom hooks.
+
+## Q. How to create custom Hooks?
+
+React also allows us to create custom Hooks with unique features that extracts component logic into reusable functions.
+
+A custom Hooks has following features:
+
+* As a function, it takes input and returns output.
+* Its name starts with **use** like useQuery, useMedia…
+* Unlike functional components, custom hooks return a normal, non-jsx data.
+* Unlike normal functions, custom hooks can use other hooks such as useState, useRef… and other custom hooks.
+
+**Example:** Custom Hook - useFetch()
+
+```js
+/**
+ * Custom Hook
+ */
+import { useState, useEffect } from "react";
+
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [url]);
+
+  return [data];
+};
+
+export default useFetch;
+```
+
+```js
+/**
+ * App Component
+ */
+import "./styles.css";
+import useFetch from "./useFetch";
+
+export default function App() {
+  // custom hook
+  const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
+  return (
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.title}</p>;
+        })}
+    </>
+  );
+}
+```
+
+
+### useState
+useState used to manage state in functional component. it accepts an initial state and returns two values
+
+* The current state.
+* A function that updates the state.
+
+```jsx
+import { useState } from "react";
+
+function Example() {
+// Declare a new state variable, which we'll call "count"
+const [count, setCount] = useState(0);
+
+return (
+ <>
+   <p>You clicked {count} times</p>
+   <button onClick={() => setCount(count + 1)}>Click me</button>
+ </>
+);
+}
+```
+### useEffect
+useEffect(callback, dependencies): is used to handle side effects in function components. like fetching data or updating the DOM, and timers. you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined. useEffect accepts two arguments. The second argument is optional.
+```javascript
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+  document.title = `Count: ${count}`;
+}, [count]); //Runs on the first render And any time any dependency value changes
+
+useEffect(() => {
+  //Runs on every render
+});
+
+useEffect(() => {
+  //Runs only on the first render
+}, []);
+```
+
+### useContext
+useContext is a way to manage data between components without passing it through props.It's useful for managing global state. You create a context using `createContext()` and provide it at a higher level. Consumers can access the context using `useContext()`
+```javascript
+const ThemeContext = createContext();
+
+function App() {
+ return (
+  <ThemeContext.Provider value="dark">
+   <Component />
+  </ThemeContext.Provider>
+ );
+}
+
+function Component() {
+ const theme = useContext(ThemeContext);
+ // Use theme value here
+} 
+```
+
+
+
 ### 28
 ### What are the differences between useEffect and useLayoutEffect hooks?
 useEffect and useLayoutEffect are both React hooks that can be used to synchronize a component with an external system, such as a browser API or a third-party library. However, there are some key differences between the two:
