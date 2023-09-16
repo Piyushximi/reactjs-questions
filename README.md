@@ -884,7 +884,7 @@ ReactDOM.render( <BlinkyRender />, document.querySelector('#root'))
 ### 24
 ### What is the purpose of using super constructor with props argument?
 
-The `super()` keyword is used to call the parent constructor. `super(props)` would pass `props` to the parent constructor.
+The `super()` keyword is used to call the parent constructor and data. It is used for the inheritance model of class. `super(props)` would pass `props` to the parent constructor.
 
 ```js
 class App extends React.Component {
