@@ -523,6 +523,7 @@ return(<button ref={refs} >{props.children}</button>)
 }
 export default forwardRef(Button);
 ```
+**[⬆ Back to Top](#table-of-contents)**
 ### 23 
 ### What is Hooks?
 Hooks is a special JavaScript function that allows you use state and other React lifecycle features without writing a class. This pattern has been introduced as a new feature in React 16.8 and helped to isolate the stateful logic from the components.
@@ -536,9 +537,9 @@ Hooks is a special JavaScript function that allows you use state and other React
 | Hooks               | Description                                                                     |
 |---------------------|---------------------------------------------------------------------------------|
 |[useState()](#useState)           |To manage states. Returns a stateful value and an updater function to update it. |
-|useEffect()          |To manage side-effects like API calls, subscriptions, timers, mutations, and more.|
-|useContext()         |To return the current value for a context.|
-|useReducer()         |A useState alternative to help with complex state management.|
+|[useEffect()](#useEffect)          |To manage side-effects like API calls, subscriptions, timers, mutations, and more.|
+|[useContext()](#useContext)         |To return the current value for a context.|
+|[useReducer()](#useReducer)         |A useState alternative to help with complex state management.|
 |useCallback()        |It returns a memorized version of a callback to help a child component not re-render unnecessarily.|
 |useMemo()            |It returns a memoized value that helps in performance optimizations.|
 |useRef()             |It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.|
@@ -659,7 +660,42 @@ function Component() {
  // Use theme value here
 } 
 ```
+### useReducer
+useReducer() is a hook to use sometimes to manage the state of the application. It is very similar to the useState hook, just more complex. It acts as an alternate hook to the useState hook to manage complex state in your application
 
+**Example:**
+
+```js
+import React, { useReducer } from 'react'
+
+const initialState = 0
+const reducer = (state, action) => {
+  switch (action) {
+    case 'increment': return state + 1
+    case 'decrement': return state - 1
+    case 'reset': return 0
+    default: throw new Error('Unexpected action')
+  }
+}
+
+const ReducerExample = () => {
+  const [count, dispatch] = useReducer(reducer, initialState)
+  return (
+    <div>
+      {count}
+      <button onClick={() => dispatch('increment')}>+1</button>
+      <button onClick={() => dispatch('decrement')}>-1</button>
+      <button onClick={() => dispatch('reset')}>reset</button>
+    </div>
+  )
+}
+
+export default ReducerExample
+```
+
+Here, we first define an initialState and a reducer. When a user clicks a button, it will dispatch an action which updates the count and the updated count will be displayed. We could define as many actions as possible in the reducer, but the limitation of this pattern is that actions are finite.
+
+**[⬆ Back to Top](#table-of-contents)**
 
 
 ### 28
@@ -672,10 +708,12 @@ useEffect and useLayoutEffect are both React hooks that can be used to synchroni
 
 In general, it's recommended to use useEffect as much as possible, because it is more performant and less prone to errors. useLayoutEffect should only be used when you need to measure or update layout, and you can't achieve the same result using useEffect.
 
+**[⬆ Back to Top](#table-of-contents)**
 ### 29
 ### What is Babel. or Transpiler?
 Babel is a javascript compiler that converts modern Javascript(ECMAScript) code into version compatible with all the browsers. Browsers can't understand JSX code. So with the help of transpiler to convert your JSX to regular Javascript that browsers can understand. The most widely used transpiler right now is Babel
 
+**[⬆ Back to Top](#table-of-contents)**
 ### 30
 ### What is Webpack.
 WebPack is a javascript module bundler that is commonly used in react to bundle and manage dependancies. it takes all the individual javascript files and other assets in project like Css, images and combine them into a single bundle that can be loaded by the browser. `Minify JS and CSS`
