@@ -17,8 +17,8 @@
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
 | 7   | [What is the difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
 | 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
-| 9   | [What is React Lifecycle](#9) |
-| 10   | [What is React Fragments, and when should you use them?](#10) |
+| 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
+| 10   | [What is React Fragments, and when should you use them?](#10) | 25 | |
 | 11   | [What is Keys in React? lists and why they are essential.](#11) |
 | 12  | [What are error boundaries in React](#12) |
 | 13  | [What is Profiler](#13) | 28 | [What are the differences between useEffect and useLayoutEffect hooks?](#28) |
@@ -880,6 +880,32 @@ ReactDOM.render( <BlinkyRender />, document.querySelector('#root'))
 
 
 **[⬆ Back to Top](#table-of-contents)**
+
+### 24
+### What is the purpose of using super constructor with props argument?
+
+The `super()` keyword is used to call the parent constructor. `super(props)` would pass `props` to the parent constructor.
+
+```js
+class App extends React.Component {
+  constructor(props) {
+      super(props)
+      this.state = {}
+   }
+}
+export default App
+```
+
+Here, `super(props)` would call the `React.Component` constructor passing in props as the argument.
+
+### createPortal()
+createPortal allow us to render a component into a DOM node that resides outside the current DOM hierarchy of the parent component.
+### createRoot
+The React.createRoot lets you create a root to display React components inside a browser DOM node.
+
+**What is the difference between createPortal vs createRoot?**
+* createRoot is rendered inter App in root id, while createPortal renders children in the same component based on id.
+* createRoot Returns an object with two methods: render and unmount.
 
 
 ### 28
