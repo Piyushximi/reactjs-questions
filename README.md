@@ -518,7 +518,10 @@ const ref = () => {
 <input ref={inputRef}/> 
 <Button onClick={ref}/>
 // Other component with Button component 
-const Button = (props,refs) => { return(<button ref={refs} >{props.children}</button>) } export default forwardRef(Button);
+const Button = (props,refs) => {
+return(<button ref={refs} >{props.children}</button>)
+}
+export default forwardRef(Button);
 ```
 ### 28
 ### What are the differences between useEffect and useLayoutEffect hooks?
