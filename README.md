@@ -914,6 +914,8 @@ The React.createRoot lets you create a root to display React components inside
 Redux is a container where you can store your whole application data. we also called that state management data. it does not belong to component state. The store is simply a javascript object.
 While it is mostly used with React, it can be used with any other JavaScript framework or library. With Redux, the state of your application is kept in a store, and each component can access any state that it needs from this store.
 
+**[⬆ useSelector() and useDispatch()](#Using-in-Function-Component)**
+
 **Architecture:**
 
 In Redux architecture, application event is denoted as an Action, which is dispatched to the reducer, the pure function. Then reducer updates the centralized store with new data based on the kind of action it receives. Store creates a new state and sends an update to view. At that time, the view was recreated to reflect the update.
@@ -981,7 +983,7 @@ Middleware is the suggested way to extend Redux with custom functionality. Middl
 ```js
 const store = createStore(reducers, initialState, middleware);
 ```
-
+**[⬆ Back to Question](#25)**
 ### Using in Function Component
 **useSelector()**
 
@@ -1000,6 +1002,8 @@ useSelector function takes another function as its parameter. This function will
 `const dispatch = useDispatch()`
 
 Now, you have a function called dispatch that will send whatever you pass it to the reducer. It’s actually a lot more simple to use than mapDispatchToProps. Just like before we want to import our actions from redux/actions
+
+**[⬆ Back to Top](#table-of-contents)**
 
 ### 26
 ### What is connect mapStateToProps and mapDispatchToProps?
@@ -1083,10 +1087,6 @@ ReactDOM.render(
     document.getElementById('App')
 )
 ```
-
-<div align="right">
-    <b><a href="#table-of-contents">↥ back to top</a></b>
-</div>
 
 **[⬆ Back to Top](#table-of-contents)**
 ### 27
