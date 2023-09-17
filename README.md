@@ -6,8 +6,8 @@
 ### Table of Contents
 
 
-| No. | Questions | No | Questions |
-| ----- | ------------------- | ---- | ------------------- |
+| No. | Questions | No | Questions | No | Questions |
+| ----- | ------------------- | ---- | ------------------- | ---- | ------------------- |
 | 1   | [What is React?](#what-is-react) | 16  | [What is Controlled component and uncontrolled Component](#16) |
 | 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) |
 | 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) |
