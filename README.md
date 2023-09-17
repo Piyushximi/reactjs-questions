@@ -18,7 +18,7 @@
 | 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
 | 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
 | 10   | [What is React Fragments, and when should you use them?](#10) | 25 | [What is Redux](#25)|
-| 11   | [What is Keys in React? lists and why they are essential.](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#What is connect mapStateToProps and mapDispatchToProps?) |
+| 11   | [What is Keys in React? lists and why they are essential.](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#What-is-connect-mapStateToProps-and-mapDispatchToProps?) |
 | 12  | [What are error boundaries in React](#12) | 27 | [What is Dependencies, devDependencies and peerDependencies](#27) |
 | 13  | [What is Profiler](#13) | 28 | [What are the differences between useEffect and useLayoutEffect hooks?](#28) |
 | 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
