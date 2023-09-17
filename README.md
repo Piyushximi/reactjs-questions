@@ -8,7 +8,6 @@
 
 | No. | Questions | No | Questions |
 | ----- | ------------------- | ---- | ------------------- |
-|     | **Core React**     | 
 | 1   | [What is React?](#what-is-react) | 16  | [What is Controlled component and uncontrolled Component](#16) |
 | 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) |
 | 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) |
@@ -18,9 +17,9 @@
 | 7   | [What is the difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
 | 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
 | 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
-| 10   | [What is React Fragments, and when should you use them?](#10) | 25 | |
-| 11   | [What is Keys in React? lists and why they are essential.](#11) |
-| 12  | [What are error boundaries in React](#12) |
+| 10   | [What is React Fragments, and when should you use them?](#10) | 25 | [What is Redux](#25)|
+| 11   | [What is Keys in React? lists and why they are essential.](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#What is connect mapStateToProps and mapDispatchToProps?) |
+| 12  | [What are error boundaries in React](#12) | 27 | [What is Dependencies, devDependencies and peerDependencies](#27) |
 | 13  | [What is Profiler](#13) | 28 | [What are the differences between useEffect and useLayoutEffect hooks?](#28) |
 | 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
 | 15  | [What is Ref](#15) | 30 | [What is Webpack.](#30) |
@@ -505,6 +504,7 @@ Component composition is one of the most fundamental concepts in React that give
 * **Context API:** It provides a way to share state globally. There is no need to pass down the props through all levels to share state.
 * **Hooks:** With hooks like useState and useEffect, components can encapsulate state and side effects while remaining reusable.
 
+**[⬆ Back to Top](#table-of-contents)**
 ### 22
 ### What is forwardRef?
 When a child component needs to reference its parent component’s current node, the parent component needs a way to send down its `ref` to the child. The technique is called ref forwarding. It’s very useful when building reusable component libraries. forwardRef is a function used to pass the ref to a child component.
@@ -907,7 +907,197 @@ The React.createRoot lets you create a root to display React components inside
 * createRoot is rendered inter App in root id, while createPortal renders children in the same component based on id.
 * createRoot Returns an object with two methods: render and unmount.
 
+**[⬆ Back to Top](#table-of-contents)**
 
+### 25
+### What is Redux
+Redux is a container where you can store your whole application data. we also called that state management data. it does not belong to component state. The store is simply a javascript object.
+While it is mostly used with React, it can be used with any other JavaScript framework or library. With Redux, the state of your application is kept in a store, and each component can access any state that it needs from this store.
+
+**Architecture:**
+
+In Redux architecture, application event is denoted as an Action, which is dispatched to the reducer, the pure function. Then reducer updates the centralized store with new data based on the kind of action it receives. Store creates a new state and sends an update to view. At that time, the view was recreated to reflect the update.
+
+
+<p align="center">
+  <img src="https://www.clariontech.com/hs-fs/hubfs/Image3-43.png?width=417&name=Image3-43.png" alt="Redux Architecture" width="500px" />
+</p>
+
+There is a central store that holds the entire state of the application. Each component can access the stored state without having to send down props from one component to another. There are three building parts: `actions`, `store`, and `reducers`.
+
+#### What are redux core concepts?
+
+**1. Actions in Redux:**
+Actions are used to send data from the application to the Redux store.
+* When you update your state with Redux, you always start with an action. Actions are in the form of Javascript objects, containing a type and an optional payload. Actions are sent using the store.dispatch() method. 
+
+**2. Reducers in Redux:**
+This is a function that accepts the current state and action as arguments and returns the updated state according to the action.
+
+**combine multiple reducers:** The `combineReducers()` helper function turns an object whose values are different reducing functions into a single reducing function you can pass to createStore.
+
+**Syntax:**
+
+```js
+const rootReducers = combineReducer(reducer1, reducer2)
+```
+
+
+**3. Store in Redux:**
+
+A Store is an object that holds the whole state tree of your application. The Redux store is the application state stored as objects. Whenever the store is updated, it will update the React components subscribed to it. The store has the responsibility of storing, reading, and updating state.
+
+When using Redux with React, states will no longer need to be lifted up; thus, it makes it easier to trace which action causes any change.
+**4. Dispatch:**
+
+Dispatch is a method that triggers an action with type and payload to Reducer.
+
+```js
+store.dispatch() 
+```
+
+**5. Subscribe:**
+
+Subscribe is a method that is used to subscribe data/state from the Store.
+
+```js
+store.subscribe()
+```
+
+**6. Provider:**
+
+The Provider is a component that has a reference to the Store and provides the data from the Store to the component it wraps.
+
+**7. Connect:**
+
+Connect is a function that communicates with the Provider.
+
+**8. Middleware:**
+
+Middleware is the suggested way to extend Redux with custom functionality. Middlewares are used to dispatch async functions. We configure Middleware\'s while creating a store.
+
+**Syntax:**
+
+```js
+const store = createStore(reducers, initialState, middleware);
+```
+
+### Using in Function Component
+**useSelector()**
+
+`import { useSelector} from 'react-redux'`
+
+Very similar to the useState hook, you will declare a variable at the top of your component and set it equal to the return value of the useSelector function. The
+useSelector function takes another function as its parameter. This function will be passed the entire state object as its parameter.
+
+`const count = useSelector((state) => state.counter)`
+
+`const user = useSelector((state) => state.user)`
+
+
+**useDispatch()**
+
+`const dispatch = useDispatch()`
+
+Now, you have a function called dispatch that will send whatever you pass it to the reducer. It’s actually a lot more simple to use than mapDispatchToProps. Just like before we want to import our actions from redux/actions
+
+### 26
+### What is connect mapStateToProps and mapDispatchToProps?
+`react-redux` package provides 3 functions 
+* `Connect` 
+* `mapStapteToProps`
+* `mapDispatchToProps`.
+
+**1 Connect**
+
+Connect is a higher order function that takes in both mapStateToProps and mapDispatchToProps as parameters.
+
+**2. Using MapStateToProps**
+
+In React, `MapStatetoProps` pulls in the state of a specific reducer state object from global store and maps it to the props of component. MapStateToProps is called everytime your store is updated. You pass in your state a retrieve that specific objects from the reducer.
+
+**3. Using MapDisptachToProps**
+
+`MapDispatchToProp` takes the dispatch functions in component and executes them against the Redux Reducer when that function is fired. MapDispatchToProps allows to dispatch state changes to your store.
+
+In a simple term,
+
+**mapStateToProps**: It connects redux state to props of react component.  
+**mapDispatchToProps**: It connects redux actions to react props.
+
+**Example:**
+
+```js
+const {createStore} = Redux
+const {connect, Provider} = ReactRedux
+const InitialState = {Collection: ["COW", "COW", "DUCK", "DUCK"]}
+
+function reducer(state=InitialState, action) {
+    if (action.type === "REVERSE") {
+      return Object.assign({}, state, {
+         Collection: state.Collection.slice().reverse()
+      })
+    }
+    return state
+}
+
+var store = createStore(reducer)
+
+function mapStateToProps(state) {
+  return state
+}
+
+var PresentationalComponent = React.createClass({
+    render: function() {
+        return (
+          <div>
+            <h2>Store State ( as Props) </h2>
+            <pre> {JSON.stringify(this.props.Collection)}</pre>
+            <StateChangerUI />
+          </div>
+          )
+    }
+})
+
+// State changer UI
+var StateChangerUI = React.createClass({
+ // Action Dispatch  
+  handleClick: function() {
+     store.dispatch({
+         type: 'REVERSE'
+      })
+  },
+  render: function() {
+    return (
+      <button type="button" className="btn btn-success" onClick={this.handleClick}>REVERSE</button>
+    )
+  }
+})
+
+PresentationalComponent = connect(mapStateToProps)(PresentationalComponent)
+
+ReactDOM.render(
+    <Provider store={store}>
+        <PresentationalComponent />
+    </Provider>,
+    document.getElementById('App')
+)
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+**[⬆ Back to Top](#table-of-contents)**
+### 27
+### What is Dependencies, devDependencies and peerDependencies?
+**Dependencies:** In package.json file, there is an object called dependencies and it consists of all the packages that are used in the project with its version number. So, whenever you install any library that is required in your project that library you can find it in the dependencies object. 
+* Dependencies can be added to your project by running : `npm install <package_name>`
+**Dev Dependencies:** In package.json file, there is an object called as dev Dependencies and it consists of all the packages that are used in the project in its development phase and not in the production or testing environment with its version number. So, whenever you want to install any library that is required only in your development phase then you can find it in the dev Dependencies object. 
+* Dev dependencies can be added to your project by running : `npm install <package_name> --save-dev`
+**Peer Dependencies:** In package.json file, there is an object called as peerDependencies and it consists of all the packages that are exactly required in the project or to the person who is downloading and the version numbers should also be the same. That is the reason they were named as peerDependencies. The best example is ‘react’ which is common in every project to run similarly.
+
+**[⬆ Back to Top](#table-of-contents)**
 ### 28
 ### What are the differences between useEffect and useLayoutEffect hooks?
 useEffect and useLayoutEffect are both React hooks that can be used to synchronize a component with an external system, such as a browser API or a third-party library. However, there are some key differences between the two:
@@ -929,3 +1119,4 @@ Babel is a javascript compiler that converts modern Javascript(ECMAScript) code 
 WebPack is a javascript module bundler that is commonly used in react to bundle and manage dependancies. it takes all the individual javascript files and other assets in project like Css, images and combine them into a single bundle that can be loaded by the browser. `Minify JS and CSS`
 
 **Make build: Make build in single file as requirement (Dev, UAT, Qa, Production )**
+**[⬆ Back to Top](#table-of-contents)**
