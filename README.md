@@ -1189,10 +1189,4 @@ Route is the conditionally shown component that renders some UI when its path ma
 
 Link component is used to create links to different routes and implement navigation around the application. It works like HTML anchor tag.
 
-<div align="right">
-    <b><a href="#table-of-contents">↥ back to top</a></b>
-</div>
-
-
-
 **[⬆ Back to Top](#table-of-contents)**
