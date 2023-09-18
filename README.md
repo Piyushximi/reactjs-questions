@@ -1167,6 +1167,7 @@ export default function App() {
 }
 ```
 **[⬆ Back to Top](#table-of-contents)**
+
 ### 32
 ### What are the components of react router?
 
@@ -1191,6 +1192,7 @@ Link component is used to create links to different routes and implement navigat
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
+
 
 
 **[⬆ Back to Top](#table-of-contents)**
