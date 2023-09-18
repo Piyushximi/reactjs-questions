@@ -8,21 +8,21 @@
 
 | No. | Questions | No | Questions | No | Questions |
 | ----- | ------------------- | ---- | ------------------- | ---- | ------------------- |
-| 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [What is React Router](#31) |
-| 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) | 32 | [What are the components of react router?](#32)|
-| 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) | 33 | [Difference between NavLink and Link](#33)|
-| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)| 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
+| 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [React Router](#31) |
+| 2   | [Major features of React?](#what-are-the-major-features-of-react) | 17 | [Reconciliation in ReactJS?](#17) | 32 | [Components of react router?](#32)|
+| 3   | [JSX?](#what-is-jsx)  | 18 | [Pure Components?](#18) | 33 | [Difference between NavLink and Link](#33)|
+| 4   | [Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [Diffing and Prop Drilling](#19)| 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
 | 5   | [Higher order components(HOC)](#5) | 20 | [Differences b/w a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
-| 7   | [Difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
-| 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
-| 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
-| 10   | [What is React Fragments](#10) | 25 | [What is Redux](#25)|
-| 11   | [What is Keys in React? ](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#what-is-connect-mapstatetoprops-and-mapdispatchtoprops) |
-| 12  | [What are error boundaries in React](#12) | 27 | [What is Dependencies, devDependencies and peerDependencies](#27) |
-| 13  | [What is Profiler](#13) | 28 | [Differences b/w useEffect and useLayoutEffect hooks?](#28) |
-| 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
-| 15  | [What is Ref](#15) | 30 | [What is Webpack.](#30) |
+| 7   | [Difference between state and props?](#7) | 22 | [forwardRef](#22)|
+| 8   | [setState()](#8) | 23 | [Hooks in React](#23) |
+| 9   | [React Lifecycle](#9) | 24 | [Super / createPortal / createRoot](#24)|
+| 10   | [React Fragments](#10) | 25 | [Redux](#25)|
+| 11   | [Keys in React? ](#11) | 26 |[Connect / mapStateToProps and mapDispatchToProps?](#what-is-connect-mapstatetoprops-and-mapdispatchtoprops) |
+| 12  | [Error boundaries in React](#12) | 27 | [Dependencies, devDependencies and peerDependencies](#27) |
+| 13  | [Profiler](#13) | 28 | [Differences b/w useEffect and useLayoutEffect hooks?](#28) |
+| 14  | [Optimization ways in react](#14) | 29 | [Babel. or Transpiler ](#29)|
+| 15  | [What is Ref](#15) | 30 | [Webpack.](#30) |
 
 
 
