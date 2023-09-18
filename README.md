@@ -11,7 +11,7 @@
 | 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [What is React Router](#31) |
 | 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) | 32 | [What are the components of react router?](#32)|
 | 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) | 33 | [Difference between NavLink and Link](#33)|
-| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)| | 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
+| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)| 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
 | 5   | [Higher order components(HOC)](#5) | 20 | [Differences b/w a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
 | 7   | [Difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
