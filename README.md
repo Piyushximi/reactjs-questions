@@ -8,19 +8,19 @@
 
 | No. | Questions | No | Questions | No | Questions |
 | ----- | ------------------- | ---- | ------------------- | ---- | ------------------- |
-| 1   | [What is React?](#what-is-react) | 16  | [What is Controlled component and uncontrolled Component](#16) |
-| 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) |
+| 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [What is React Router](#31) |
+| 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) | 32 | [What are the components of react router?](#32)|
 | 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) |
 | 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)|
-| 5   | [What is Higher order components(HOC)](#5) | 20 | [What are the differences between a class component and functional component?](#20)|
+| 5   | [Higher order components(HOC)](#5) | 20 | [Differences b/w a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
-| 7   | [What is the difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
+| 7   | [Difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
 | 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
 | 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
 | 10   | [What is React Fragments, and when should you use them?](#10) | 25 | [What is Redux](#25)|
-| 11   | [What is Keys in React? lists and why they are essential.](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#what-is-connect-mapstatetoprops-and-mapdispatchtoprops) |
+| 11   | [What is Keys in React? ](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#what-is-connect-mapstatetoprops-and-mapdispatchtoprops) |
 | 12  | [What are error boundaries in React](#12) | 27 | [What is Dependencies, devDependencies and peerDependencies](#27) |
-| 13  | [What is Profiler](#13) | 28 | [What are the differences between useEffect and useLayoutEffect hooks?](#28) |
+| 13  | [What is Profiler](#13) | 28 | [Differences b/w useEffect and useLayoutEffect hooks?](#28) |
 | 14  | [What is the Optimization ways in react](#14) | 29 | [What is Babel. or Transpiler ](#29)|
 | 15  | [What is Ref](#15) | 30 | [What is Webpack.](#30) |
 
@@ -1119,4 +1119,78 @@ Babel is a javascript compiler that converts modern Javascript(ECMAScript) code 
 WebPack is a javascript module bundler that is commonly used in react to bundle and manage dependancies. it takes all the individual javascript files and other assets in project like Css, images and combine them into a single bundle that can be loaded by the browser. `Minify JS and CSS`
 
 **Make build: Make build in single file as requirement (Dev, UAT, Qa, Production )**
+
+**[⬆ Back to Top](#table-of-contents)**
+### 31
+## Q. What is React Router?
+
+React router enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL. It has a simple API with powerful features like lazy loading, dynamic route matching, and location transition handling.
+
+```js
+/**
+ * React Router v6
+ */
+import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
+
+/**
+ * Home Component
+ */
+const Home = () => {
+  return <h1>Home Page</h1>;
+};
+
+/**
+ * Contacts Component
+ */
+const Contacts = () => {
+  return <h1>Contact Page</h1>;
+};
+
+/**
+ * App Component
+ */
+export default function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div className="navbar">
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/contact"}>Contact Us</NavLink>
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contacts />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+```
+**[⬆ Back to Top](#table-of-contents)**
+### 32
+### What are the components of react router?
+
+The main components of React router are
+
+**1. BrowserRouter**:
+
+BrowserRouter is a router implementation that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL. It is the parent component that is used to store all of the other components.
+
+**2. Routes**:
+
+It\'s a new component introduced in the v6 and a upgrade of the component. The main advantages of Routes over Switch that routes are chosen based on the best match instead of being traversed in order.
+
+**3. Route**:
+
+Route is the conditionally shown component that renders some UI when its path matches the current URL.
+
+**4. Link**:
+
+Link component is used to create links to different routes and implement navigation around the application. It works like HTML anchor tag.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+
 **[⬆ Back to Top](#table-of-contents)**
