@@ -10,8 +10,8 @@
 | ----- | ------------------- | ---- | ------------------- | ---- | ------------------- |
 | 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [What is React Router](#31) |
 | 2   | [What are the major features of React?](#what-are-the-major-features-of-react) | 17 | [What is reconciliation in ReactJS?](#17) | 32 | [What are the components of react router?](#32)|
-| 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) |
-| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)|
+| 3   | [What is JSX?](#what-is-jsx)  | 18 | [What are Pure Components?](#18) | 33 | [Difference between NavLink and Link](#33)|
+| 4   | [What do you understand by Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [What is Diffing and Prop Drilling](#19)| | 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
 | 5   | [Higher order components(HOC)](#5) | 20 | [Differences b/w a class component and functional component?](#20)|
 | 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
 | 7   | [Difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
@@ -1127,28 +1127,19 @@ WebPack is a javascript module bundler that is commonly used in react to bundle 
 React router enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL. It has a simple API with powerful features like lazy loading, dynamic route matching, and location transition handling.
 
 ```js
-/**
- * React Router v6
- */
+/**React Router v6 */
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 
-/**
- * Home Component
- */
+/** Home Component and Contacts Component */
 const Home = () => {
   return <h1>Home Page</h1>;
 };
 
-/**
- * Contacts Component
- */
 const Contacts = () => {
   return <h1>Contact Page</h1>;
 };
 
-/**
- * App Component
- */
+/**  App Component */
 export default function App() {
   return (
     <div className="App">
@@ -1190,3 +1181,141 @@ Route is the conditionally shown component that renders some UI when its path ma
 Link component is used to create links to different routes and implement navigation around the application. It works like HTML anchor tag.
 
 **[⬆ Back to Top](#table-of-contents)**
+
+### 33
+### What is the difference between NavLink and Link?
+
+The `<Link>` component is used to navigate the different routes on the site. But `<NavLink>` is used to add the style attributes to the active routes.
+
+**Link:**
+
+```js
+<Link to="/">Home</Link>
+```
+
+**NavLink:**
+
+```js
+<NavLink to="/" activeClassName="active">Home</NavLink>
+```
+
+**[⬆ Back to Top](#table-of-contents)**
+### 34
+### What is the difference between HashRouter and BrowserRouter in React?
+
+**1. BrowserRouter:**
+
+* The widely popular router and a router for modern browsers which user HTML5 pushState API. (i.e. `pushState`, `replaceState` and `popState` API).
+* It routes as normal URL in browser, you can\'t differentiate whether it is server rendered page or client rendered page through the URL.
+* It assumes, your server handles all the request URL (eg., `/`, `/about`) and points to root `index.html`. From there, BrowserRouter take care of routing the relevant page.
+* It accepts `forceRefresh` props to support legacy browsers which doesn\'t support HTML5 pushState API
+
+**Syntax:**
+
+```js
+/**
+ * https://example.com/home
+ * https://example.com/about
+ */
+
+<BrowserRouter
+  basename={optionalString}
+  forceRefresh={optionalBool}
+  getUserConfirmation={optionalFunc}
+  keyLength={optionalNumber}
+>
+  <App />
+</BrowserRouter>
+```
+
+**Example:**
+
+```js
+/**
+ * BrowserRouter()
+ */
+import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+
+const HomePage = () => {
+  return <h2>Home Page</h2>;
+};
+
+const AboutPage = () => {
+  return <h2>About Page</h2>;
+};
+
+export default function App() {
+  return (
+    <section className="App">
+      <BrowserRouter>
+        <ul>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+        <Routes>
+          <Route exact path="/home" element={<HomePage />} />
+          <Route exact path="/about" element={<AboutPage />} />
+        </Routes>
+      </BrowserRouter>
+    </section>
+  );
+}
+```
+
+**2. HashRouter:**
+
+* A router which uses client side hash routing.
+* Whenever, there is a new route get rendered, it updated the browser URL with hash routes. (eg., `/#/about`)
+* Hash portion of the URL won\'t be handled by server, server will always send the `index.html` for every request and ignore hash value. Hash value will be handled by react router.
+* It is used to support legacy browsers which usually doesn\'t support HTML `pushState` API
+
+**Syntax:**
+
+```js
+/**
+ * https://example.com/#/home
+ * https://example.com/#/about
+ */
+
+<HashRouter
+  basename={optionalString}
+  getUserConfirmation={optionalFunc}
+  hashType={optionalString}
+>
+  <App />
+</HashRouter>
+```
+
+**Example:**
+
+```js
+/**
+ * HashRouter()
+ */
+import { Link, HashRouter, Routes, Route } from "react-router-dom";
+
+const HomePage = () => {
+  return <h2>Home Page</h2>;
+};
+
+const AboutPage = () => {
+  return <h2>About Page</h2>;
+};
+
+export default function App() {
+  return (
+    <section className="App">
+      <HashRouter>
+        <ul>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+        <Routes>
+          <Route exact path="/home" element={<HomePage />} />
+          <Route exact path="/about" element={<AboutPage />} />
+        </Routes>
+      </HashRouter>
+    </section>
+  );
+}
+```
