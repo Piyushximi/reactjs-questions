@@ -17,7 +17,7 @@
 | 7   | [Difference between state and props?](#7) | 22 | [What is forwardRef](#22)|
 | 8   | [What is setState()](#8) | 23 | [What is Hooks](#23) |
 | 9   | [What is React Lifecycle](#9) | 24 | [What is super / createPortal / createRoot](#24)|
-| 10   | [What is React Fragments, and when should you use them?](#10) | 25 | [What is Redux](#25)|
+| 10   | [What is React Fragments](#10) | 25 | [What is Redux](#25)|
 | 11   | [What is Keys in React? ](#11) | 26 |[What is connect mapStateToProps and mapDispatchToProps?](#what-is-connect-mapstatetoprops-and-mapdispatchtoprops) |
 | 12  | [What are error boundaries in React](#12) | 27 | [What is Dependencies, devDependencies and peerDependencies](#27) |
 | 13  | [What is Profiler](#13) | 28 | [Differences b/w useEffect and useLayoutEffect hooks?](#28) |
