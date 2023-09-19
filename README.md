@@ -8,13 +8,13 @@
 
 | No. | Questions | No | Questions | No | Questions |
 | ----- | ------------------- | ---- | ------------------- | ---- | ------------------- |
-| 1   | [What is React?](#what-is-react) | 16  | [Controlled component and uncontrolled Component](#16) | 31 | [React Router](#31) |
+| 1   | [What is React?](#what-is-react) | 16  | [Controlled and uncontrolled Component](#16) | 31 | [React Router](#31) |
 | 2   | [Major features of React?](#what-are-the-major-features-of-react) | 17 | [Reconciliation in ReactJS?](#17) | 32 | [Components of react router?](#32)|
 | 3   | [JSX?](#what-is-jsx)  | 18 | [Pure Components?](#18) | 33 | [Difference between NavLink and Link](#33)|
-| 4   | [Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [Diffing and Prop Drilling](#19)| 34 | [Difference between HashRouter and BrowserRouter in React?](#34) | 
-| 5   | [Higher order components(HOC)](#5) | 20 | [Differences b/w a class component and functional component?](#20)| 35 | [What is ReactDOM](#35)|
-| 6   | [Differentiate between stateful and stateless components.](#6) | 21 | [Component Composition](#21) |
-| 7   | [Difference between state and props?](#7) | 22 | [forwardRef](#22)|
+| 4   | [Virtual DOM](#what-do-you-understand-by-virtual-dom) | 19 | [Diffing and Prop Drilling](#19)| 34 | [HashRouter and BrowserRouter in React?](#34) | 
+| 5   | [Higher order components(HOC)](#5) | 20 | [Class and functional component?](#20)| 35 | [What is ReactDOM](#35)|
+| 6   | [stateful and stateless components.](#6) | 21 | [Component Composition](#21) | 36 | [NPX and NPM](#36)|
+| 7   | [state and props?](#7) | 22 | [forwardRef](#22)|
 | 8   | [setState()](#8) | 23 | [Hooks in React](#23) |
 | 9   | [React Lifecycle](#9) | 24 | [Super / createPortal / createRoot](#24)|
 | 10   | [React Fragments](#10) | 25 | [Redux](#25)|
@@ -1382,3 +1382,14 @@ ReactDOM.createPortal(child, container)
 
 createPortal allow us to render a component into a DOM node that resides outside the current DOM hierarchy of the parent component.
 
+### 36
+### NPM and NPX
+
+NPM stands for Node Package Manager
+NPX stands for Node Package eXecute 
+
+| NPM               | NPX                                                                     |
+|---------------------|---------------------------------------------------------------------------------|
+| NPM is a package manager used to install, delete, and update Javascript packages on your machine. | NPX is a package executer, and it is used to execute javascript packages directly, without installing them.|
+|NPM installs packages globally, which means that your machine may be polluted by packages that are not required anymore in the long run. | NPX does not install packages, so package pollution on the machine is not a concern.|
+|To use create-react-app using NPM, we would first have to install it globally, and then run it, which makes using NPM in such cases redundant. | The most common application of NPX is the create-react-app command. Since we only need to use it once, i.e., while initializing the project, we do not install it. |
