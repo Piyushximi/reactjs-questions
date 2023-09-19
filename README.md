@@ -1261,6 +1261,7 @@ export default function App() {
   );
 }
 ```
+**[⬆ Back to Question](#34)**
 
 **2. HashRouter:**
 
@@ -1319,7 +1320,7 @@ export default function App() {
   );
 }
 ```
-
+**[⬆ Back to Top](#table-of-contents)**
 
 ### 35
 ## Q. What is ReactDOM?
@@ -1382,6 +1383,7 @@ ReactDOM.createPortal(child, container)
 
 createPortal allow us to render a component into a DOM node that resides outside the current DOM hierarchy of the parent component.
 
+**[⬆ Back to Top](#table-of-contents)**
 ### 36
 ### NPM and NPX
 
