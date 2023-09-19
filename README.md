@@ -1385,8 +1385,8 @@ createPortal allow us to render a component into a DOM node that resides outside
 ### 36
 ### NPM and NPX
 
-NPM stands for Node Package Manager
-NPX stands for Node Package eXecute 
+* NPM stands for Node Package Manager
+* NPX stands for Node Package eXecute 
 
 | NPM               | NPX                                                                     |
 |---------------------|---------------------------------------------------------------------------------|
