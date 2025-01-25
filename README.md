@@ -908,20 +908,23 @@ The React.createRoot lets you create a root to display React components inside
 * createRoot Returns an object with two methods: render and unmount.
 
 **[⬆ Back to Top](#table-of-contents)**
+### 25
+### What is Redux
+Redux is a container where you can store your whole application data. we also called that state management data. it does not belong to component state. The store is simply a javascript object.
+While it is mostly used with React, it can be used with any other JavaScript framework or library. With Redux, the state of your application is kept in a store, and each component can access any state that it needs from this store.
+
+### what is Redux Toolkit 
+Redux Toolkit is an official library for Redux that aims to simplify the process of setting up and working with Redux in a JavaScript application. It provides a set of tools and patterns that reduce boilerplate code and enforce best practices, making it easier to manage global state in a scalable manner.
 
 | Aspect	| Redux	| Redux Toolkit |
 |----------------|-------|-------------|
-| Defination|Redux is a popular JavaScript library for managing the state of your application in a predictable way. It's often used with React, but can be used with any JavaScript framework or library. |Redux Toolkit is an official library for Redux that aims to simplify the process of setting up and working with Redux in a JavaScript application. It provides a set of tools and patterns that reduce boilerplate code and enforce best practices, making it easier to manage global state in a scalable manner. |
 |Setup  |	Typically requires a significant amount of boilerplate code and manual setup.	|Simplifies setup with pre-configured functions and default settings.|
 |Boilerplate	|Higher boilerplate: Need to write action types, action creators, and reducers manually.	|Reduces boilerplate: Provides createSlice, configureStore, and other utilities to reduce repetitive code.|
 |Configuration	|Requires manual setup for DevTools, middleware, and store enhancers.	|Pre-configured setup for DevTools and middleware, streamlining the process.|
 |Learning Curve	|Steeper learning curve due to manual configuration, understanding middleware, and best practices.	|Flatter learning curve with opinionated defaults and streamlined processes.|
 |Performance	|Performance relies on custom configuration and developer expertise.	|Provides built-in optimizations and supports performance best practices out of the box.
 |Features	|Core library focuses on state management, additional patterns and libraries often needed.	|Includes additional features such as immutable updates and simplified state changes.|
-### 25
-### What is Redux
-Redux is a container where you can store your whole application data. we also called that state management data. it does not belong to component state. The store is simply a javascript object.
-While it is mostly used with React, it can be used with any other JavaScript framework or library. With Redux, the state of your application is kept in a store, and each component can access any state that it needs from this store.
+
 
 **[⬆ useSelector() and useDispatch()](#Using-in-Function-Component)**
 
@@ -994,6 +997,7 @@ const store = createStore(reducers, initialState, middleware);
 ```
 **[⬆ Back to Question](#25)**
 ### Using in Function Component
+useDispatch and useSelector: Hooks provided by react-redux for accessing the Redux store in React components.
 **useSelector()**
 
 `import { useSelector} from 'react-redux'`
